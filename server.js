@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cros = require("cors");
 const Todo = require("./models/todo");
 
+const PORT = process.env.PORT || 8000;
+
 const app = express();
 
 app.use(express.json());
@@ -66,6 +68,6 @@ app.get("/todo/complete/:id", async (req, res) => {
   }
 });
 
-app.listen(8000, () => {
+app.listen(PORT, () => {
   console.log("Server Stated");
 });
