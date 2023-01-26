@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cros = require("cors");
 const Todo = require("./models/todo");
+require("./db/conn");
 
 const PORT = process.env.PORT || 8000;
 
@@ -9,20 +10,6 @@ const app = express();
 
 app.use(express.json());
 app.use(cros());
-
-mongoose.set("strictQuery", true);
-
-mongoose
-  .connect("mongodb://localhost:27017/todo", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("Connected To DB");
-  })
-  .catch((e) => {
-    console.log(e);
-  });
 
 app.get("/todos", async (req, res) => {
   try {
